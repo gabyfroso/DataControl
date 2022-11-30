@@ -37,7 +37,7 @@ public class Recompletar {
         directorio_src = direccion;
         control_de_datos.add_nota(direccion, "");
 
-        NumeroLineas = control_de_datos.Cuantas_Lineas(directorio_src);
+        NumeroLineas = control_de_datos.Cuantas_Lineas_hay_int(directorio_src);
 
         obetener_y_ejecutar();
     }
@@ -53,7 +53,7 @@ public class Recompletar {
             nombres_generales.add(tempoString);
             tempoString = direcciones_generales + tempoString;
 
-            control_de_datos.Create_direct(tempoString);
+            control_de_datos.Create_directorio(tempoString);
             direcciones_carpetas_generales.add(tempoString + "\\");
         }
 
