@@ -22,7 +22,7 @@ public class control_de_datos {
         }
     }
 
-    static FileReader archivo;
+    private static FileReader archivo;
 
     public static void Create_direct(String direccion) {
 

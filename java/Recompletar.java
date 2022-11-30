@@ -1,5 +1,16 @@
 import java.util.ArrayList;
 
+/*
+ * Obtendras las direcciones creadas con los txt 
+ * para volver a hacer el proceso en caso de que gustes
+ * 
+ * solo usa:
+ * para ver su tamaño si desea i
+ * Recompletar.direcciones_creadas_conTxt.size();
+ * 
+ * para ver
+ * Recompletar.direcciones_creadas_conTxt.get(x_valor);
+*/
 public class Recompletar {
 
     private static int NumeroLineas;
@@ -52,7 +63,7 @@ public class Recompletar {
     private static void create_srcs() throws Exception {
         String tempo_names;
 
-        for (int j = 0; j < NumeroLineas; j++) {
+        for (int j = 0; j < nombres_generales.size(); j++) {
             tempo_names = direcciones_carpetas_generales.get(j) + nombres_generales.get(j);
             tempo_names = tempo_names + ".txt";
             control_de_datos.add_nota(tempo_names, "");
