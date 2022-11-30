@@ -1,0 +1,13 @@
+debes poner
+
+Recompletar.Recompletado(direccion);
+
+     * Estructura del archivo direccion es la siguiente:
+     * Direccion: ruta\ruta\archivo.txt
+     * 
+     * archivo.txt:
+     * ruta\
+     * 
+     * carpeta1
+     * carpeta2
+     * carpeta3
