@@ -1,3 +1,5 @@
+package utility;
+import java.io.File;
 import java.util.ArrayList;
 
 /*
@@ -33,8 +35,8 @@ public class Recompletar {
      * carpeta3
      */
     public static void Recompletado_arbol_genealogico(String direccion) throws Exception {
-
-        directorio_src = direccion;
+        File ishere = new File("");
+        directorio_src = ishere + direccion;
         control_de_datos.add_nota(direccion, "");
 
         NumeroLineas = control_de_datos.Cuantas_Lineas_hay_int(directorio_src);
@@ -45,7 +47,6 @@ public class Recompletar {
     private static void obetener_y_ejecutar() throws Exception {
 
         direcciones_generales = control_de_datos.LeerLinea(directorio_src, 0);
-
         String tempoString;
 
         for (int i = 2; i < NumeroLineas; i++) {
@@ -62,7 +63,6 @@ public class Recompletar {
 
     private static void create_srcs() throws Exception {
         String tempo_names;
-
         
         for (int j = 0; j < nombres_generales.size(); j++) {
             tempo_names = direcciones_carpetas_generales.get(j) + nombres_generales.get(j);
