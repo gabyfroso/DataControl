@@ -18,7 +18,6 @@ public class Recomplete_withFile {
     private static int NumeroLineas;
     public static ArrayList<File> direcc_grls = new ArrayList<File>();
     private static File archivo_txt;
-    private static File imhere = new File("");
 
     String Directorio_general;
 
@@ -53,7 +52,7 @@ public class Recomplete_withFile {
              * obj2...
              */
             tempname = control_de_datos.LeerLinea(archivo_txt.getPath(), i);
-            tempname = imhere.getCanonicalPath() + "\\" + tmpFilmain_string + "\\" + tempname;
+            tempname = archivo_txt.getCanonicalPath() + "\\" + tmpFilmain_string + "\\" + tempname;
             /*
              * ..\\obj1
              */
