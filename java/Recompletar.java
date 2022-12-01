@@ -63,10 +63,10 @@ public class Recompletar {
     private static void create_srcs() throws Exception {
         String tempo_names;
 
+        
         for (int j = 0; j < nombres_generales.size(); j++) {
             tempo_names = direcciones_carpetas_generales.get(j) + nombres_generales.get(j);
-            tempo_names = tempo_names + ".txt";
-            control_de_datos.add_nota(tempo_names, "");
+            control_de_datos.add_nota(tempo_names + ".txt", "");
         }
     }
 }
