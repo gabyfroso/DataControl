@@ -59,6 +59,7 @@ public class App {
         Recomplete_withFile.close();
         for (int i = 0; i < temp.size() ; i++) {
             Recomplete_withFile.Recompletado_arbol_genealogico(temp.get(i), temp2.get(i));
+            Recomplete_withFile.close();
         }
 
     }
