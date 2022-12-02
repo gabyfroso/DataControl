@@ -36,15 +36,15 @@ public class Recomplete_withFile {
     public static void Recompletado_arbol_genealogico(File donde_hacer, File que_leer) throws Exception {
         archivo_txt = que_leer;
         donde_hacerlo = donde_hacer;
-        control_de_datos.add_nota(archivo_txt.getPath(), "");
+        DataControl.add_nota(archivo_txt.getPath(), "");
 
-        NumeroLineas = control_de_datos.Cuantas_Lineas_hay_int(archivo_txt.getAbsolutePath());
+        NumeroLineas = DataControl.Cuantas_Lineas_hay_int(archivo_txt.getAbsolutePath());
 
         obetener_y_ejecutar();
     }
 
     private static void obetener_y_ejecutar() throws Exception {
-        String tmpFilmain_string = control_de_datos.LeerLinea(archivo_txt.getPath(), 0);
+        String tmpFilmain_string = DataControl.LeerLinea(archivo_txt.getPath(), 0);
         String tempname;
 
         for (int i = 2; i < NumeroLineas; i++) {
@@ -53,12 +53,12 @@ public class Recomplete_withFile {
              * obj1
              * obj2...
              */
-            tempname = control_de_datos.LeerLinea(archivo_txt.getPath(), i);
+            tempname = DataControl.LeerLinea(archivo_txt.getPath(), i);
             tempname = donde_hacerlo.getCanonicalPath() + "\\" + tmpFilmain_string + "\\" + tempname;
             /*
              * ..\\obj1
              */
-            direcc_grls.add(control_de_datos.retornarFile(tempname));
+            direcc_grls.add(DataControl.retornarFile(tempname));
         }
 
         create_srcs();
@@ -69,10 +69,10 @@ public class Recomplete_withFile {
         
         for (File filetemp : direcc_grls) {
             tempo_names = filetemp.getPath();
-            control_de_datos.Create_directorio(tempo_names);
+            DataControl.Create_directorio(tempo_names);
 
             tempo_names = tempo_names + "\\" + filetemp.getName() + ".txt";
-            control_de_datos.add_nota(tempo_names, "");
+            DataControl.add_nota(tempo_names, "");
         }
     }
 
