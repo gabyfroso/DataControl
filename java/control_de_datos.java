@@ -1,4 +1,5 @@
 package utility;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -29,10 +30,33 @@ public class control_de_datos {
             if (directorio_mkdir.mkdirs()) {
 
             } else {
-                System.out.println("Ocurrio un problema al crearlo.");
+                System.out.println("Ocurrio un problema al crear la carpeta.");
+                System.out.println("reintentando con uno anterior...");
+                PrivCreate_directorio(direccion);
             }
         } else {
             System.out.println("exist: " + direccion + " actually");
+        }
+
+    }
+
+    private static void PrivCreate_directorio(String directorio) {
+        String tempo_dir = "";
+        if (directorio.indexOf("\\") != -1) {
+            
+            if (directorio.indexOf("\\\\") != -1) {
+                for (int i = 0; i < directorio.indexOf("\\\\"); i++) {
+                    tempo_dir = tempo_dir + directorio.charAt(i);
+                }
+            }
+            else {
+                for (int i = 0; i < directorio.indexOf("\\"); i++) {
+                    tempo_dir = tempo_dir + directorio.charAt(i);
+                }
+            }
+            new File(tempo_dir);
+        } else {
+            System.out.println("no se pudo");
         }
     }
 
@@ -154,7 +178,12 @@ public class control_de_datos {
         } else {
             System.out.println("no se ha encontrado");
         }
-        
+
         return tempDef;
+    }
+
+    public static File retornarFile(String direccion) {
+
+        return new File(direccion);
     }
 }
