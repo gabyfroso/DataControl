@@ -1,5 +1,0 @@
-miRuta\\
-
-Objeto1
-Objeto2
-Objeto3

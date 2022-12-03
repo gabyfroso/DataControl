@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 
-public class control_de_datos {
+public class DataControl {
 
     /*
      * Controlado :3
@@ -31,32 +32,10 @@ public class control_de_datos {
 
             } else {
                 System.out.println("Ocurrio un problema al crear la carpeta.");
-                System.out.println("reintentando con uno anterior...");
-                PrivCreate_directorio(direccion);
+                System.out.println("Dir intentado: " + direccion);
             }
         } else {
-            System.out.println("exist: " + direccion + " actually");
-        }
-
-    }
-
-    private static void PrivCreate_directorio(String directorio) {
-        String tempo_dir = "";
-        if (directorio.indexOf("\\") != -1) {
-            
-            if (directorio.indexOf("\\\\") != -1) {
-                for (int i = 0; i < directorio.indexOf("\\\\"); i++) {
-                    tempo_dir = tempo_dir + directorio.charAt(i);
-                }
-            }
-            else {
-                for (int i = 0; i < directorio.indexOf("\\"); i++) {
-                    tempo_dir = tempo_dir + directorio.charAt(i);
-                }
-            }
-            new File(tempo_dir);
-        } else {
-            System.out.println("no se pudo");
+            // System.out.println("exist: " + direccion + " actually");
         }
     }
 
@@ -105,7 +84,23 @@ public class control_de_datos {
                     tempo = tempo + cadena + "\n";
                 }
             } else {
-                System.out.println("-Ex no deberia estar aqui");
+                /*
+                 * Significando que es uno vacío
+                 * hacemos la prueba de ello, caso
+                 * contrario, ya sabemos.
+                 */
+                lector = new BufferedReader(archivo);
+                int x = lector.read();
+                while (x != -1) {
+                    if ((x = lector.read()) == -1) {
+                        // Directorio no contuvo nada
+                    }
+                    {
+                        System.out.println("-Ex no deberia estar aqui\nError en: DataControl.AlmacenarTodo.");
+                        System.out.println("Direccion: " + direccion);
+                    }
+                }
+                lector.close();
             }
             archivo.close();
         } catch (Exception e) {
@@ -142,6 +137,7 @@ public class control_de_datos {
             }
         } catch (Exception e) {
             System.out.println("Error en LeerLinea");
+            return "Error en LeerLinea " + linea;
         }
         return ingreso_tempoString;
     }
@@ -165,18 +161,41 @@ public class control_de_datos {
         return (int) NumeroLineas;
     }
 
+    /*
+     * buscará la definición, y la dirá hasta toparse con un -
+     * si quieres que empiece desde alli,
+     * que_buscar = "-"
+     * 
+     * si quieres tener antes
+     * que_buscar= ""
+     * 
+     * eje:
+     * nota: ayer a la noche
+     * vi un lobo
+     * -
+     * &&&&&&&&&&&&&&&&&&&&&
+     * nota2: ayer vi una
+     * gabiota-
+     */
     public static String Buscar_definicion(String direccion_src, String que_buscar) throws Exception {
         add_nota(direccion_src, "");
 
-        String tempo = control_de_datos.almacenar_todo_en_uno(direccion_src);
+        String tempo = DataControl.almacenar_todo_en_uno(direccion_src);
         String tempDef = "";
+        boolean cortar = false;
 
         if (tempo.indexOf(que_buscar) != -1) {
             for (int i = tempo.indexOf(que_buscar) + que_buscar.length(); i < tempo.length(); i++) {
-                tempDef = tempDef + tempo.charAt(i);
+                if ((int) tempo.charAt(i) == 45) {
+                    cortar = true;
+                }
+                if (!cortar) {
+                    tempDef = tempDef + tempo.charAt(i);
+                }
             }
         } else {
-            System.out.println("no se ha encontrado");
+            System.out.println("no se ha encontrado la definicion");
+            return "\nControlData: no encontrada def";
         }
 
         return tempDef;
@@ -185,5 +204,9 @@ public class control_de_datos {
     public static File retornarFile(String direccion) {
 
         return new File(direccion);
+    }
+
+    public final static void clearConsole() throws InterruptedException, IOException {
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 }
